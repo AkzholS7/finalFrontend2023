@@ -5,6 +5,8 @@ import InputAmout from './components/InputAmout'
 import SelectCountry from './components/SelectCountry'
 import SwitchCurrency from './components/SwitchCurrency'
 import { CurrencyContext } from './context/CurrencyContext'
+import UniversityLogo from './images/alatoo-logo.png'
+import './index.css'; // or your CSS file name
 
 function App() {
   const {
@@ -46,6 +48,12 @@ function App() {
 
   return (
     <Container maxWidth="md" sx={boxStyles}>
+      <img
+      src={UniversityLogo}
+      alt="University Logo"
+      className="logo-animation" // Add the animation class here
+      style={{ width: '90px', marginBottom: '3rem' }}
+    />
       <Typography variant='h5' sx={{ marginBottom: "2rem"}}>Enter your amount to convert to any currency</Typography>
       <Grid container spacing={2}>
         <InputAmout />
@@ -61,10 +69,12 @@ function App() {
         </Box>
       ) : ""}
       <Typography fontSize="10px" sx={{ position: "absolute", bottom: "1rem", right: "1rem" }}>
-        <Link target="_blank" rel="noopener" href="https://www.youtube.com/canddev">Follow me on YouTube</Link>
+        <Link target="_blank" rel="noopener" href="https://github.com/AkzholS7/finalFrontend2023">
+          You can see my code on my GitHub repo
+        </Link>
       </Typography>
     </Container>
-  )
+  );
 }
 
 export default App
