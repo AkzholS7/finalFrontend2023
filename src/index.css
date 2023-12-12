@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to right, #FFFFFF, #B3E0F2);
+    background: linear-gradient(to right, #cf5b5b, #062f3d);
     animation: gradient 10s infinite;
 }
 
@@ -16,15 +16,15 @@ body {
 }
 @keyframes zoomInOut {
 	0% {
-	  transform: scale(1); /* Normal size */
+	  transform: scale(1); 
 	}
 	50% {
-	  transform: scale(1.2); /* Zoom in */
+	  transform: scale(1.2); 
 	}
 	100% {
-	  transform: scale(1); /* Back to normal size */
+	  transform: scale(1); 
 	}
 }
 .logo-animation {
-	animation: zoomInOut 2s infinite; /* Change duration or iteration count as needed */
+	animation: zoomInOut 2s infinite;
 }

@@ -6,7 +6,7 @@ import SelectCountry from './components/SelectCountry'
 import SwitchCurrency from './components/SwitchCurrency'
 import { CurrencyContext } from './context/CurrencyContext'
 import UniversityLogo from './images/alatoo-logo.png'
-import './index.css'; // or your CSS file name
+import './index.css'; 
 
 function App() {
   const {
@@ -40,7 +40,7 @@ function App() {
     textAlign: "center",
     color: "#222",
     minHeight: "20rem",
-    borderRadius: 2,
+    borderRadius: 14,
     padding: "4rem 2rem",
     boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",
     position: "relative"
@@ -51,7 +51,7 @@ function App() {
       <img
       src={UniversityLogo}
       alt="University Logo"
-      className="logo-animation" // Add the animation class here
+      className="logo-animation"
       style={{ width: '90px', marginBottom: '3rem' }}
     />
       <Typography variant='h5' sx={{ marginBottom: "2rem"}}>Enter your amount to convert to any currency</Typography>
