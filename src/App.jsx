@@ -57,9 +57,18 @@ function App() {
       <Typography variant='h5' sx={{ marginBottom: "2rem"}}>Enter your amount to convert to any currency</Typography>
       <Grid container spacing={2}>
         <InputAmout />
-        <SelectCountry value={fromCurrency} setValue={setFromCurrency} label="From" />
-        <SwitchCurrency />
-        <SelectCountry value={toCurrency} setValue={setToCurrency} label="To" />
+        <SelectCountry
+  value={fromCurrency}
+  setValue={setFromCurrency}
+  label="From"
+  includeBanana // Include this prop for 'From' dropdown
+/>
+<SelectCountry
+  value={toCurrency}
+  setValue={setToCurrency}
+  label="To"
+  includeBanana // Include this prop for 'To' dropdown
+/>
       </Grid>
 
       {firstAmount ? (

@@ -15,7 +15,6 @@ const SwitchCurrency = () => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
   }
-
   return (
     <Grid item xs={12} md="auto">
       <Button onClick={handleSwitch} sx={{
@@ -28,4 +27,4 @@ const SwitchCurrency = () => {
   )
 }
 
-export default SwitchCurrency  
+export default SwitchCurrency

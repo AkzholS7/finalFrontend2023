@@ -15,7 +15,6 @@ const CurrencyProvider = ({ children }) => {
     firstAmount,
     setFirstAmount
   };
-
   return (
     <CurrencyContext.Provider value={value}>
       {children}
