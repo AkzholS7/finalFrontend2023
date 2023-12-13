@@ -1,25 +1,24 @@
-import { Autocomplete, Grid, Skeleton, TextField } from "@mui/material"
-import useAxios from "../hooks/useAxios"
+import { Autocomplete, Grid, TextField } from "@mui/material";
+import useAxios from "../hooks/useAxios";
+import { useState, useEffect } from "react";
 
 const SelectCountry = (props) => {
   const { value, setValue, label } = props;
   const [data, loaded, error] = useAxios("https://restcountries.com/v3.1/all");
+  const [dataCountries, setDataCountries] = useState([]);
 
-  if(loaded) {
-    return (
-      <Grid item xs={12} md={3}>
-        <Skeleton variant="rounded" height={60}/>
-      </Grid>
-    )
-  }
-  if(error) {
-    return "Something went wrong!"
-  }
+  useEffect(() => {
+    if (!loaded && !error && data) {
+      const dataFilter = data.filter(item => "currencies" in item);
+      const formattedCountries = dataFilter.map(item => {
+        return `${item.flag} ${Object.keys(item.currencies)[0]} - ${item.name.common}`;
+      });
 
-  const dataFilter = data.filter(item => "currencies" in item);
-  const dataCountries = dataFilter.map(item => {
-    return `${item.flag} ${Object.keys(item.currencies)[0]} - ${item.name.common}`
-  });
+      // Include "qorot" as an additional option
+      const extendedOptions = ["🍏 Qorot - Qorot Currency", ...formattedCountries];
+      setDataCountries(extendedOptions);
+    }
+  }, [data, loaded, error]);
 
   return (
     <Grid item xs={12} md={3}>
@@ -33,7 +32,7 @@ const SelectCountry = (props) => {
         renderInput={(params) => <TextField {...params} label={label} />}
       />
     </Grid>
-  )
-}
+  );
+};
 
-export default SelectCountry
+export default SelectCountry;
