@@ -24,95 +24,50 @@ function App() {
   const codeToCurrency = toCurrency.split(" ")[1];
 
   useEffect(() => {
-  if (firstAmount && (fromCurrency.includes("qorot") || toCurrency.includes("qorot"))) {
-    if (fromCurrency.includes("qorot") && toCurrency.includes("qorot")) {
-      // If both 'fromCurrency' and 'toCurrency' are 'qorot', set result as the input 'firstAmount'
-      setResultCurrency(firstAmount);
-    } else {
-      // Fetch exchange rate for USD to qorot
-      axios("https://api.freecurrencyapi.com/v1/latest", {
-        params: {
-          from: "USD",
-          to: "qorot"
-        }
-      })
-        .then(usdToQorotResponse => {
-          const usdToQorotRate = usdToQorotResponse.data.exchangeRate;
-
-          if (fromCurrency.includes("qorot")) {
-            // Convert 'fromCurrency' to USD
-            axios("https://api.freecurrencyapi.com/v1/latest", {
-              params: {
-                from: "qorot",
-                to: "USD"
-              }
-            })
-              .then(fromToUSDResponse => {
-                const fromToUSDRate = fromToUSDResponse.data.exchangeRate;
-                const amountInUSD = firstAmount * fromToUSDRate;
-
-                // Convert 'USD' to 'toCurrency'
-                axios("https://api.freecurrencyapi.com/v1/latest", {
-                  params: {
-                    from: "USD",
-                    to: codeToCurrency
-                  }
-                })
-                  .then(usdToToCurrencyResponse => {
-                    const usdToToCurrencyRate = usdToToCurrencyResponse.data.exchangeRate;
-                    const convertedResult = amountInUSD * usdToToCurrencyRate;
-                    setResultCurrency(convertedResult);
-                  })
-                  .catch(usdToToCurrencyError => console.log(usdToToCurrencyError));
-              })
-              .catch(fromToUSDError => console.log(fromToUSDError));
-          } else {
-            // Convert 'fromCurrency' to 'USD' and then to 'toCurrency'
-            axios("https://api.freecurrencyapi.com/v1/latest", {
-              params: {
-                from: codeFromCurrency,
-                to: "USD"
-              }
-            })
-              .then(fromToUSDResponse => {
-                const fromToUSDRate = fromToUSDResponse.data.exchangeRate;
-                const amountInUSD = firstAmount * fromToUSDRate;
-
-                axios("https://api.freecurrencyapi.com/v1/latest", {
-                  params: {
-                    from: "USD",
-                    to: codeToCurrency
-                  }
-                })
-                  .then(usdToToCurrencyResponse => {
-                    const usdToToCurrencyRate = usdToToCurrencyResponse.data.exchangeRate;
-                    const convertedResult = amountInUSD * usdToToCurrencyRate;
-                    setResultCurrency(convertedResult);
-                  })
-                  .catch(usdToToCurrencyError => console.log(usdToToCurrencyError));
-              })
-              .catch(fromToUSDError => console.log(fromToUSDError));
+    if (firstAmount && fromCurrency && toCurrency) {
+      if (fromCurrency === 'qorot' || toCurrency === 'qorot') {
+        const baseCurrency = fromCurrency === 'qorot' ? 'USD' : fromCurrency;
+        const targetCurrency = toCurrency === 'qorot' ? 'USD' : toCurrency;
+  
+        // Fetch exchange rates for currencies excluding qorot
+        axios("https://api.freecurrencyapi.com/v1/latest", {
+          params: {
+            apikey: import.meta.env.VITE_API_KEY,
+            base_currency: baseCurrency,
+            currencies: targetCurrency
           }
         })
-        .catch(usdToQorotError => console.log(usdToQorotError));
-    }
-  } else {
-    // Fetch conversion rates from the API for direct conversion
-    axios("https://api.freecurrencyapi.com/v1/latest", {
-      params: {
-        apikey: import.meta.env.VITE_API_KEY,
-        base_currency: codeFromCurrency,
-        currencies: codeToCurrency
+          .then(response => {
+            let result;
+            if (fromCurrency === 'qorot') {
+              // Assuming qorotToUSDConversionRate is known
+              const qorotToUSDConversionRate = 0.8; // Replace with the accurate rate
+              const amountInUSD = firstAmount * qorotToUSDConversionRate;
+              result = amountInUSD * response.data.data[targetCurrency];
+            } else {
+              // Assuming USDToQorotConversionRate is known
+              const USDToQorotConversionRate = 1.2; // Replace with the accurate rate
+              const amountInUSD = firstAmount / response.data.data[baseCurrency];
+              result = amountInUSD / USDToQorotConversionRate;
+            }
+            setResultCurrency(result);
+          })
+          .catch(error => console.log(error));
+      } else {
+        // Regular conversion when qorot is not involved
+        axios("https://api.freecurrencyapi.com/v1/latest", {
+          params: {
+            apikey: import.meta.env.VITE_API_KEY,
+            base_currency: fromCurrency,
+            currencies: toCurrency
+          }
+        })
+          .then(response => setResultCurrency(response.data.data[toCurrency]))
+          .catch(error => console.log(error));
       }
-    })
-      .then(response => {
-        const result = response.data.data[codeToCurrency] * firstAmount;
-        setResultCurrency(result);
-      })
-      .catch(error => console.log(error));
-  }
-}, [firstAmount, fromCurrency, toCurrency, codeFromCurrency, codeToCurrency]);
-
+    }
+  }, [firstAmount, fromCurrency, toCurrency, qorotValue, shoroValue]);
+  
   
   
   
