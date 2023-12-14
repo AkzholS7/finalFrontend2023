@@ -15,7 +15,7 @@ const SelectCountry = (props) => {
       });
 
       // Include "qorot" as an additional option
-      const extendedOptions = ["🍏 Qorot - Qorot Currency", ...formattedCountries];
+      const extendedOptions = ["🍏 qorot - Qorot Currency", ...formattedCountries];
       setDataCountries(extendedOptions);
     }
   }, [data, loaded, error]);

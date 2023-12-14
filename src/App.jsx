@@ -54,6 +54,8 @@ function App() {
   }, [firstAmount, fromCurrency, toCurrency, codeFromCurrency, codeToCurrency, qorotValue, shoroValue]);
   
   
+  
+  
 
   const boxStyles = {
     background: "#fdfdfd",
