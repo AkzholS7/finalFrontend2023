@@ -22,13 +22,13 @@ This Currency Converter App allows users to convert between various currencies i
    ```bash
    git clone https://github.com/AkzholS7/finalFrontend2023
 
-   cd currency-converter-app
+   cd finalFrontend2023
 
    npm install
 
    npm start dev or npm run dev
 
-### Screenshots
+## Screenshots
 
 ![Currency Converter App](./src/images/1.jpg)
 ![Currency Converter App](./src/images/2.jpg)
