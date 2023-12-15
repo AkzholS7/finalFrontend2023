@@ -19,8 +19,8 @@ jobs:
       - name: INstall project Dependencies
         run: npm install
       
-      - name: Build Vue.js Application
-        run: npm run dev
+      - name: Build React.js Application
+        run: npm run build
 
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
