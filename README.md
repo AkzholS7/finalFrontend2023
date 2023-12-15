@@ -27,3 +27,13 @@ This Currency Converter App allows users to convert between various currencies i
    npm install
 
    npm start dev or npm run dev
+
+### Screenshots
+
+![Currency Converter App](./src/images/1.jpg)
+![Currency Converter App](./src/images/2.jpg)
+![Currency Converter App](./src/images/3.jpg)
+![Currency Converter App](./src/images/4.jpg)
+![Currency Converter App](./src/images/5.jpg)
+![Currency Converter App](./src/images/6.jpg)
+
