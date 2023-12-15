@@ -7,6 +7,7 @@ import SwitchCurrency from './components/SwitchCurrency';
 import { CurrencyContext } from './context/CurrencyContext';
 import UniversityLogo from './images/alatoo-logo.png';
 import './index.css';
+import './App.css';
 
 function App() {
   const {
@@ -24,28 +25,28 @@ function App() {
   useEffect(() => {
     if (firstAmount) {
       let convertedResult = 0;
-  
-      // Exchange rates
-      const qorotToUSD = 0.5; // 1 qorot = 0.5 USD
-      const usdToQorot = 2; // 1 USD = 2 qorot
+
+      const qorotToUSD = 0.5; 
+      const usdToQorot = 2;
       const nanToUSD = 0.25;
       const usdToNan = 4;
       const shoroToUSD = 0.75;
       const usdToShoro = 1.33;
       const toibosToUSD = 1.25; 
       const usdToToibos = 0.8;
+      const shaurmaToUSD = 2;
+      const usdToShaurma = 0.5
   
       if (fromCurrency.includes("qorot")) {
         if (toCurrency.includes("qorot")) {
           setResultCurrency(firstAmount);
         } else if (toCurrency !== "USD") {
-          const amountInUSD = firstAmount * qorotToUSD; // Convert to USD
-          // Fetch conversion rates from the API using USD
+          const amountInUSD = firstAmount * qorotToUSD; 
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
               base_currency: "USD",
-              currencies: codeToCurrency // Use the desired currency code here
+              currencies: codeToCurrency 
             }
           })
           .then(response => {
@@ -54,18 +55,17 @@ function App() {
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * qorotToUSD; // Use directly if toCurrency is USD
+          convertedResult = firstAmount * qorotToUSD; 
           setResultCurrency(convertedResult);
         }
       } if (fromCurrency.includes("qorot") && toCurrency.includes("nan")) {
       if (firstAmount && fromCurrency.includes("qorot")) {
-        const amountInUSD = firstAmount * qorotToUSD; // Convert to USD
-        convertedResult = amountInUSD * usdToNan; // Convert USD to nan
+        const amountInUSD = firstAmount * qorotToUSD; 
+        convertedResult = amountInUSD * usdToNan; 
         setResultCurrency(convertedResult);
       }
     } else if (toCurrency.includes("qorot")) {
         if (fromCurrency !== "USD") {
-          // Fetch conversion rates to USD from the API
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
@@ -75,26 +75,25 @@ function App() {
           })
           .then(response => {
             const usdValue = response.data.data.USD;
-            const amountInUSD = firstAmount * usdValue; // Convert to USD
-            convertedResult = amountInUSD * usdToQorot; // Multiply by usdToQorot
+            const amountInUSD = firstAmount * usdValue; 
+            convertedResult = amountInUSD * usdToQorot; 
             setResultCurrency(convertedResult);
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * usdToQorot; // Use directly if fromCurrency is USD
+          convertedResult = firstAmount * usdToQorot; 
           setResultCurrency(convertedResult);
         }
       }  if (fromCurrency.includes("nan")) {
         if (toCurrency.includes("nan")) {
           setResultCurrency(firstAmount);
         } else if (toCurrency !== "USD") {
-          const amountInUSD = firstAmount * nanToUSD; // Convert to USD
-          // Fetch conversion rates from the API using USD
+          const amountInUSD = firstAmount * nanToUSD; 
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
               base_currency: "USD",
-              currencies: codeToCurrency // Use the desired currency code here
+              currencies: codeToCurrency 
             }
           })
           .then(response => {
@@ -103,12 +102,11 @@ function App() {
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * nanToUSD; // Use directly if toCurrency is USD
+          convertedResult = firstAmount * nanToUSD; 
           setResultCurrency(convertedResult);
         }
       } else if (toCurrency.includes("nan")) {
         if (fromCurrency !== "USD") {
-          // Fetch conversion rates to USD from the API
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
@@ -118,32 +116,28 @@ function App() {
           })
           .then(response => {
             const usdValue = response.data.data.USD;
-            const amountInUSD = firstAmount * usdValue; // Convert to USD
-            convertedResult = amountInUSD * usdToNan; // Multiply by usdToNan
+            const amountInUSD = firstAmount * usdValue; 
+            convertedResult = amountInUSD * usdToNan; 
             setResultCurrency(convertedResult);
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * usdToNan; // Use directly if fromCurrency is USD
+          convertedResult = firstAmount * usdToNan; 
           setResultCurrency(convertedResult);
         }
-      } 
-      
-      
-// #########################################///////////////////////////////////////////////////////////      
+      }     
       
       
       if (fromCurrency.includes("shoro")) {
         if (toCurrency.includes("shoro")) {
           setResultCurrency(firstAmount);
         } else if (toCurrency !== "USD") {
-          const amountInUSD = firstAmount * shoroToUSD; // Convert to USD
-          // Fetch conversion rates from the API using USD
+          const amountInUSD = firstAmount * shoroToUSD;
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
               base_currency: "USD",
-              currencies: codeToCurrency // Use the desired currency code here
+              currencies: codeToCurrency
             }
           })
           .then(response => {
@@ -152,12 +146,11 @@ function App() {
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * shoroToUSD; // Use directly if toCurrency is USD
+          convertedResult = firstAmount * shoroToUSD; 
           setResultCurrency(convertedResult);
         }
       } else if (toCurrency.includes("shoro")) {
         if (fromCurrency !== "USD") {
-          // Fetch conversion rates to USD from the API
           axios("https://api.freecurrencyapi.com/v1/latest", {
             params: {
               apikey: import.meta.env.VITE_API_KEY,
@@ -167,13 +160,13 @@ function App() {
           })
           .then(response => {
             const usdValue = response.data.data.USD;
-            const amountInUSD = firstAmount * usdValue; // Convert to USD
-            convertedResult = amountInUSD * usdToShoro; // Multiply by usdToShoro
+            const amountInUSD = firstAmount * usdValue; 
+            convertedResult = amountInUSD * usdToShoro; 
             setResultCurrency(convertedResult);
           })
           .catch(error => console.log(error));
         } else {
-          convertedResult = firstAmount * usdToShoro; // Use directly if fromCurrency is USD
+          convertedResult = firstAmount * usdToShoro; 
           setResultCurrency(convertedResult);
         }
       }
@@ -182,13 +175,12 @@ function App() {
       
       if (fromCurrency.includes("shoro") && toCurrency.includes("nan")) {
         if (firstAmount && fromCurrency.includes("shoro")) {
-          const amountInUSD = firstAmount * qorotToUSD; // Convert to USD
-          convertedResult = amountInUSD * usdToNan; // Convert USD to nan
+          const amountInUSD = firstAmount * qorotToUSD; 
+          convertedResult = amountInUSD * usdToNan; 
           setResultCurrency(convertedResult);
         }
       } else if (toCurrency.includes("shoro")) {
           if (fromCurrency !== "USD") {
-            // Fetch conversion rates to USD from the API
             axios("https://api.freecurrencyapi.com/v1/latest", {
               params: {
                 apikey: import.meta.env.VITE_API_KEY,
@@ -198,13 +190,13 @@ function App() {
             })
             .then(response => {
               const usdValue = response.data.data.USD;
-              const amountInUSD = firstAmount * usdValue; // Convert to USD
-              convertedResult = amountInUSD * usdToShoro; // Multiply by usdToQorot
+              const amountInUSD = firstAmount * usdValue; 
+              convertedResult = amountInUSD * usdToShoro; 
               setResultCurrency(convertedResult);
             })
             .catch(error => console.log(error));
           } else {
-            convertedResult = firstAmount * usdToShoro; // Use directly if fromCurrency is USD
+            convertedResult = firstAmount * usdToShoro;
             setResultCurrency(convertedResult);
           }
         }
@@ -216,13 +208,12 @@ function App() {
           if (toCurrency.includes("toibos")) {
             setResultCurrency(firstAmount);
           } else if (toCurrency !== "USD") {
-            const amountInUSD = firstAmount * toibosToUSD; // Convert to USD
-            // Fetch conversion rates from the API using USD
+            const amountInUSD = firstAmount * toibosToUSD;
             axios("https://api.freecurrencyapi.com/v1/latest", {
               params: {
                 apikey: import.meta.env.VITE_API_KEY,
                 base_currency: "USD",
-                currencies: codeToCurrency // Use the desired currency code here
+                currencies: codeToCurrency 
               }
             })
             .then(response => {
@@ -231,12 +222,12 @@ function App() {
             })
             .catch(error => console.log(error));
           } else {
-            convertedResult = firstAmount * toibosToUSD; // Use directly if toCurrency is USD
+            convertedResult = firstAmount * toibosToUSD; 
             setResultCurrency(convertedResult);
           }
         } else if (toCurrency.includes("toibos")) {
           if (fromCurrency !== "USD") {
-            // Fetch conversion rates to USD from the API
+            
             axios("https://api.freecurrencyapi.com/v1/latest", {
               params: {
                 apikey: import.meta.env.VITE_API_KEY,
@@ -246,28 +237,25 @@ function App() {
             })
             .then(response => {
               const usdValue = response.data.data.USD;
-              const amountInUSD = firstAmount * usdValue; // Convert to USD
-              convertedResult = amountInUSD * usdToToibos; // Multiply by usdToToibos
+              const amountInUSD = firstAmount * usdValue; 
+              convertedResult = amountInUSD * usdToToibos; 
               setResultCurrency(convertedResult);
             })
             .catch(error => console.log(error));
           } else {
-            convertedResult = firstAmount * usdToToibos; // Use directly if fromCurrency is USD
+            convertedResult = firstAmount * usdToToibos; 
             setResultCurrency(convertedResult);
           }
-        }
-      
-        
+        }       
         
         if (fromCurrency.includes("toibos") && toCurrency.includes("nan")) {
           if (firstAmount && fromCurrency.includes("toibos")) {
-            const amountInUSD = firstAmount * qorotToUSD; // Convert to USD
-            convertedResult = amountInUSD * usdToNan; // Convert USD to nan
+            const amountInUSD = firstAmount * qorotToUSD;
+            convertedResult = amountInUSD * usdToNan; 
             setResultCurrency(convertedResult);
           }
         } else if (toCurrency.includes("toibos")) {
             if (fromCurrency !== "USD") {
-              // Fetch conversion rates to USD from the API
               axios("https://api.freecurrencyapi.com/v1/latest", {
                 params: {
                   apikey: import.meta.env.VITE_API_KEY,
@@ -277,17 +265,88 @@ function App() {
               })
               .then(response => {
                 const usdValue = response.data.data.USD;
-                const amountInUSD = firstAmount * usdValue; // Convert to USD
-                convertedResult = amountInUSD * usdToToibos; // Multiply by usdToQorot
+                const amountInUSD = firstAmount * usdValue; 
+                convertedResult = amountInUSD * usdToToibos; 
                 setResultCurrency(convertedResult);
               })
               .catch(error => console.log(error));
             } else {
-              convertedResult = firstAmount * usdToToibos; // Use directly if fromCurrency is USD
+              convertedResult = firstAmount * usdToToibos; 
               setResultCurrency(convertedResult);
             }
-          }else {
-        // Fetch conversion rates from the API
+          }if (fromCurrency.includes("shaurma")) {
+            if (toCurrency.includes("shaurma")) {
+              setResultCurrency(firstAmount);
+            } else if (toCurrency !== "USD") {
+              const amountInUSD = firstAmount * shaurmaToUSD; 
+              
+              axios("https://api.freecurrencyapi.com/v1/latest", {
+                params: {
+                  apikey: import.meta.env.VITE_API_KEY,
+                  base_currency: "USD",
+                  currencies: codeToCurrency 
+                }
+              })
+              .then(response => {
+                const result = response.data.data[codeToCurrency] * amountInUSD;
+                setResultCurrency(result);
+              })
+              .catch(error => console.log(error));
+            } else {
+              convertedResult = firstAmount * shaurmaToUSD; 
+              setResultCurrency(convertedResult);
+            }
+          } else if (toCurrency.includes("shaurma")) {
+            if (fromCurrency !== "USD") {
+              axios("https://api.freecurrencyapi.com/v1/latest", {
+                params: {
+                  apikey: import.meta.env.VITE_API_KEY,
+                  base_currency: codeFromCurrency,
+                  currencies: "USD"
+                }
+              })
+              .then(response => {
+                const usdValue = response.data.data.USD;
+                const amountInUSD = firstAmount * usdValue; 
+                convertedResult = amountInUSD * usdToShaurma; 
+                setResultCurrency(convertedResult);
+              })
+              .catch(error => console.log(error));
+            } else {
+              convertedResult = firstAmount * usdToShaurma; 
+              setResultCurrency(convertedResult);
+            }
+          }
+        
+          
+          
+          if (fromCurrency.includes("shaurma") && toCurrency.includes("nan")) {
+            if (firstAmount && fromCurrency.includes("shaurma")) {
+              const amountInUSD = firstAmount * qorotToUSD; 
+              convertedResult = amountInUSD * usdToNan; 
+              setResultCurrency(convertedResult);
+            }
+          } else if (toCurrency.includes("shaurma")) {
+              if (fromCurrency !== "USD") {
+                axios("https://api.freecurrencyapi.com/v1/latest", {
+                  params: {
+                    apikey: import.meta.env.VITE_API_KEY,
+                    base_currency: codeFromCurrency,
+                    currencies: "USD"
+                  }
+                })
+                .then(response => {
+                  const usdValue = response.data.data.USD;
+                  const amountInUSD = firstAmount * usdValue; 
+                  convertedResult = amountInUSD * usdToShaurma; 
+                  setResultCurrency(convertedResult);
+                })
+                .catch(error => console.log(error));
+              } else {
+                convertedResult = firstAmount * usdToShaurma; 
+                setResultCurrency(convertedResult);
+              }
+            }else {
         axios("https://api.freecurrencyapi.com/v1/latest", {
           params: {
             apikey: import.meta.env.VITE_API_KEY,
@@ -314,7 +373,9 @@ function App() {
     padding: "2rem",
     borderRadius: 14,
     boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",
-    position: "relative"
+    position: "relative",
+    width: "250%"
+
   }
 
   return (
@@ -328,20 +389,19 @@ function App() {
         />
         <Typography variant='h5' style={{ marginBottom: "2rem" }}>Enter your amount to convert to any currency</Typography>
         <Grid container spacing={2}>
-          {/* Input for the amount */}
+
           <InputAmout />
   
-          {/* Dropdown for selecting 'From' currency */}
+         
           <SelectCountry value={fromCurrency} setValue={setFromCurrency} label="From" />
   
-          {/* Switch button to change currency direction */}
+          
           <SwitchCurrency />
   
-          {/* Dropdown for selecting 'To' currency */}
+         
           <SelectCountry value={toCurrency} setValue={setToCurrency} label="To" />
         </Grid>
-  
-        {/* Display conversion result */}
+
         {firstAmount ? (
   <Box style={{ textAlign: "left", marginTop: "1rem"}}>
     <Typography>{firstAmount} {fromCurrency} =</Typography>
@@ -350,8 +410,6 @@ function App() {
     </Typography>
   </Box>
 ) : ""}
-        
-        {/* Link to GitHub repo */}
         <Typography fontSize="10px" style={{ position: "absolute", bottom: "1rem", right: "1rem" }}>
           <Link target="_blank" rel="noopener" href="https://github.com/AkzholS7/finalFrontend2023">
             You can see my code on my GitHub repo

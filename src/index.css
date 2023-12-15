@@ -1,7 +1,9 @@
 body {
     background: linear-gradient(to right, #cf5b5b, #062f3d);
     animation: gradient 10s infinite;
-}
+	display: flex;
+justify-content: center;
+	}
 
 @keyframes gradient {
 	0% {
