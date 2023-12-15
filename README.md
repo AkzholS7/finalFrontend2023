@@ -28,8 +28,8 @@ This Currency Converter App allows users to convert between various currencies i
 
    npm start dev or npm run dev
 
-### 
-[Link ot my App: ](https://suborov.s3.eu-north-1.amazonaws.com/index.html)
+### Link to my App:
+[My_project: ](https://suborov.s3.eu-north-1.amazonaws.com/index.html)
 
 ## Screenshots
 
