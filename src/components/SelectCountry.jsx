@@ -18,7 +18,7 @@ const SelectCountry = (props) => {
       const extendedOptions = ["🍏 qorot - Qorot Currency",
       "🍞 nan - Nan Currency",
         "🍖 shoro - Shoro Currency",
-        "🥙 shaurman - Shaurman Currency",
+        "🥙 shaurma - Shaurma Currency",
         "🍲 toibos - Toibos Currency",
         ...formattedCountries]
       setDataCountries(extendedOptions);
