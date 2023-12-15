@@ -1,4 +1,4 @@
-# Currency Converter App
+# Currency Converter to with additional converter to App
 
 This Currency Converter App allows users to convert between various currencies including qorot, nan, shoro, shaurman, and toibos.
 
@@ -27,6 +27,9 @@ This Currency Converter App allows users to convert between various currencies i
    npm install
 
    npm start dev or npm run dev
+
+### 
+[Link ot my App: ](https://suborov.s3.eu-north-1.amazonaws.com/index.html)
 
 ## Screenshots
 
